@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <title>Dice Game</title>
+</head>
+<style type="text/css">
+  .container {
+    width: 350px;
+    /* Order for the box model: margin, border, and padding */
+    margin: 0 auto;
+    padding: 50px 20px;
+  }
+
+  h2 {
+    font-size: x-large;
+    text-align: center;
+  }
+
+  .para {
+    font-size: large;
+    padding: 5px;
+  }
+
+  #start {
+    background-color: hsl(252, 100%, 50%);
+    border-radius: 5px;
+    border: 1px solid hsl(253, 100%, 50%);
+    color: white;
+    padding: 5px;
+    font-size: medium;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+  <h2>DICE GAME</h2>
+
+
+    <p class="para" style="color: red;">{{error}}</p><!-- validation if the players's name is null or not -->
+
+    <form action="login" method='POST'><!--prompt user to input the player's name -->
+      <p class="para"> Player1's Name:<input type='text' name='user1' value={{user1}} ></p>
+      <p class="para"> Player2's Name:<input type='text' name='user2' value={{user2}} > </p>
+      <p><input type='submit' value='Start' id='start'></p>
+    </form>
+
+
+  </div>
+</body>
+
+</html>

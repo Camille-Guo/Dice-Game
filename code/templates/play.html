@@ -1,0 +1,143 @@
+<html>
+
+<head>
+  <title>Dice Game</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<style type="text/css">
+  .container {
+    width: 750px;
+    /* Order for the box model: margin, border, and padding */
+    margin: 0 auto;
+    padding: 50px 20px;
+
+  }
+
+  table {
+    width: 700px;
+
+  }
+
+  h2 {
+    font-size:x-large;
+    text-align: center;
+
+  }
+
+  tr {
+    width: 760px;
+    height: 40px;
+  }
+
+  td{
+    font-size: large;
+    text-align: center;
+    padding: 10px;
+  }
+
+  #roll {
+    background-color: hsl(248, 100%, 50%);
+    border-radius: 5px;
+    border: 1px solid hsl(248, 100%, 50%);
+    color: white;
+    padding: 5px;
+    font-size: large;
+  }
+
+  #hold {
+    background-color: #ff0090;
+    border-radius: 5px;
+    border: 1px solid #ff0090;
+    color: white;
+    padding: 5px;
+    font-size: large;
+  }
+
+  #button {
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid red;
+    color: white;
+    padding: 5px;
+    font-size: large;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+  <h2>DICE GAME</h2>    
+    <form action="play" method='POST'>
+      <table>
+        <tr>
+          <td colspan="5" style="text-align: right;"><a href="/logout" id="button">EXIT</a></td>
+        </tr>
+        <tr>
+          <td>Player1:{{session['user1']}}</td>
+          <td colspan="3"></td>
+          <td>Player2:{{session['user2']}}</td>
+        </tr>
+        <tr style="color: red;">
+          <td>Score:{% if session.score1 %}{{session['score1']}}{% else %}{{0}}{% endif %}</td>
+          <td colspan="3"></td>
+          <td>Score:{% if session.score2 %}{{session['score2']}}{% else %}{{0}}{% endif %}</td>
+        </tr>
+        <tr>
+          {% if winner==1 %}
+          <td colspan="5">
+            {{ session['user1'] }} win,congratulations!<br>Click exit to restart a game.
+          </td>
+        </tr>
+      </table>
+      {% elif winner==2 %}
+      <td colspan="5">
+        {{ session['user2'] }} win,congratulations!<br>Click exit to restart a game.
+      </td>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+      </table>
+      {% else %}
+      <td colspan="5">
+        {% if session['turn']==1 %}
+        <span style="color: red;"> {{session['user1']}}s'turn</span><br>
+        Please choose 'Roll' or 'Hold'
+        {% else %}
+        <span style="color: red;"> {{session['user2']}}s'turn</span><br>
+        Please choose 'Roll' or 'Hold'
+        {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td>{% if (dice==1) %}
+          <img src="../static/Die1.bmp" height="100px" />
+          {% elif (dice==2) %}
+          <img src="../static/Die2.bmp" height="100px" />
+          {% elif (dice==3) %}
+          <img src="../static/Die3.bmp" height="100px" />
+          {% elif (dice==4) %}
+          <img src="../static/Die4.bmp" height="100px" />
+          {% elif (dice==5) %}
+          <img src="../static/Die5.bmp" height="100px" />
+          {% elif (dice==6) %}
+          <img src="../static/Die6.bmp" height="100px" />
+          {% endif %}
+        </td>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type='submit' value='ROLL' name='choice' id='roll'></td>
+        <td></td>
+        <td><input type='submit' value='HOLD' name='choice' id='hold'></td>
+        <td></td>
+      </tr>
+      </table>
+      {% endif %}
+    </form>
+    <p></p>
+  </div>
+</body>
+
+</html>
